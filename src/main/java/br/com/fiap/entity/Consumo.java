@@ -54,12 +54,11 @@ public class Consumo {
 		super();
 	}
 
-	public Consumo(Double litrosConsumidos, Double precoPorLitro, Double valorConsumo, Estilo estilo, Marca marca,
-			Consumidor consumidor, Comanda comanda) {
+	public Consumo(Double litrosConsumidos, Double precoPorLitro, Estilo estilo, Marca marca, Consumidor consumidor,
+			Comanda comanda) {
 		super();
 		this.litrosConsumidos = litrosConsumidos;
 		this.precoPorLitro = precoPorLitro;
-		this.valorConsumo = valorConsumo;
 		this.estilo = estilo;
 		this.marca = marca;
 		this.consumidor = consumidor;

@@ -14,7 +14,7 @@ public class TesteRemove {
 		try {
 			em = Persistence.createEntityManagerFactory("enjoyIt").createEntityManager();
 
-			Consumidor consumidor = em.find(Consumidor.class, 119876543);
+			Consumidor consumidor = em.find(Consumidor.class, 1123456789l);
 			
 			em.getTransaction().begin();
 

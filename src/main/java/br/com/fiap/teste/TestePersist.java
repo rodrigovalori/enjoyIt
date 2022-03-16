@@ -31,11 +31,11 @@ public class TestePersist {
 
 			List<Consumo> consumos = new ArrayList<Consumo>();
 
-			Consumo consumo1 = new Consumo(2.7, 1.0, 1.9, Estilo.STOUT, Marca.AMSTEL, consumidor, comanda);
+			Consumo consumo1 = new Consumo(2.7, 1.0, Estilo.STOUT, Marca.AMSTEL, consumidor, comanda);
 			consumos.add(consumo1);
-			Consumo consumo2 = new Consumo(0.4, 0.9, 2.3, Estilo.PORTER, Marca.BUDWEISER, consumidor, comanda);
+			Consumo consumo2 = new Consumo(0.4, 0.9, Estilo.PORTER, Marca.BUDWEISER, consumidor, comanda);
 			consumos.add(consumo2);
-			Consumo consumo3 = new Consumo(1.3, 7.1, 4.9, Estilo.TRIPEL, Marca.COLORADO, consumidor, comanda);
+			Consumo consumo3 = new Consumo(1.3, 7.1, Estilo.TRIPEL, Marca.COLORADO, consumidor, comanda);
 			consumos.add(consumo3);
 
 			em.getTransaction().begin();
