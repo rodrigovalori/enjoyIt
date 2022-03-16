@@ -31,7 +31,6 @@ public class Consumo {
 	@Column(name = "nr_preco_por_litro", nullable = false)
 	private Double precoPorLitro;
 	
-	// Cria��o de alias para defini��o de coluna virtual (para c�lculo de valor total por consumo):
 	@Column(name = "nr_valor_consumo", columnDefinition = "AS (nr_litros_consumidos * nr_preco_por_litro)", insertable = false, updatable = false)
 	private Double valorConsumo;
 
