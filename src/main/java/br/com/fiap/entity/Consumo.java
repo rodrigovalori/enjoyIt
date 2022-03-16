@@ -31,9 +31,6 @@ public class Consumo {
 	@Column(name = "nr_preco_por_litro", nullable = false)
 	private Double precoPorLitro;
 
-	@Column(name = "nr_valor_consumo", columnDefinition = "AS (nr_litros_consumidos * nr_preco_por_litro)", insertable = false, updatable = false)
-	private Double valorConsumo;
-
 	@Enumerated(EnumType.STRING)
 	@Column(name = "ds_estilo", nullable = false)
 	private Estilo estilo;
@@ -71,14 +68,6 @@ public class Consumo {
 
 	public void setPrecoPorLitro(Double precoPorLitro) {
 		this.precoPorLitro = precoPorLitro;
-	}
-
-	public Double getValorConsumo() {
-		return valorConsumo;
-	}
-
-	public void setValorConsumo(Double valorConsumo) {
-		this.valorConsumo = valorConsumo;
 	}
 
 	public Long getId() {

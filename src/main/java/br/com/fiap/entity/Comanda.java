@@ -28,9 +28,9 @@ public class Comanda {
 	@Column(name = "dt_comanda", nullable = false)
 	private Calendar dataComanda;
 
-	@Column(name = "nr_valor_total_gasto", nullable = false)
+	@Column(name = "nr_valor_total_gasto")
 	private Double valorTotalGasto;
-
+	
 	@JoinColumn(name = "nr_telefone")
 	@ManyToOne
 	private Consumidor consumidor;
