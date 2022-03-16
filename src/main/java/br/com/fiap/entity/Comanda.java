@@ -23,7 +23,7 @@ public class Comanda {
 	@SequenceGenerator(name = "comanda", sequenceName = "sq_tb_comanda", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "comanda")
 	@Column(name = "id_comanda")
-	private Integer id;
+	private Long id;
 
 	@Column(name = "dt_comanda", nullable = false)
 	private Calendar dataComanda;
@@ -49,11 +49,11 @@ public class Comanda {
 		this.consumidor = consumidor;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

@@ -16,7 +16,7 @@ public class Consumidor {
 
 	@Id
 	@Column(name = "nr_telefone", nullable = false)
-	private Integer numeroTelefone;
+	private Long numeroTelefone;
 
 	@Column(name = "nm_consumidor", nullable = false)
 	private String nomeConsumidor;
@@ -28,7 +28,7 @@ public class Consumidor {
 	private Calendar dataNascimento;
 
 	@Column(name = "nr_cpf")
-	private Integer cpf;
+	private Long cpf;
 
 	@Column(name = "ds_genero")
 	private String genero;
@@ -47,7 +47,7 @@ public class Consumidor {
 
 	@Column(name = "ds_estado")
 	private String estado;
-	
+
 	@OneToMany(mappedBy = "consumidor", cascade = CascadeType.ALL)
 	private List<Comanda> comanda;
 
@@ -55,7 +55,7 @@ public class Consumidor {
 		super();
 	}
 
-	public Consumidor(Integer numeroTelefone, String nomeConsumidor, String email, Calendar dataNascimento, Integer cpf,
+	public Consumidor(Long numeroTelefone, String nomeConsumidor, String email, Calendar dataNascimento, Long cpf,
 			String genero, Integer cep, String logradouro, String bairro, String cidade, String estado) {
 		super();
 		this.numeroTelefone = numeroTelefone;
@@ -71,11 +71,11 @@ public class Consumidor {
 		this.estado = estado;
 	}
 
-	public Integer getNumeroTelefone() {
+	public Long getNumeroTelefone() {
 		return numeroTelefone;
 	}
 
-	public void setNumeroTelefone(Integer numeroTelefone) {
+	public void setNumeroTelefone(Long numeroTelefone) {
 		this.numeroTelefone = numeroTelefone;
 	}
 
@@ -103,11 +103,11 @@ public class Consumidor {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public Integer getCpf() {
+	public Long getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(Integer cpf) {
+	public void setCpf(Long cpf) {
 		this.cpf = cpf;
 	}
 

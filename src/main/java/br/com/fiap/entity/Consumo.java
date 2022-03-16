@@ -23,7 +23,7 @@ public class Consumo {
 	@SequenceGenerator(name = "consumo", sequenceName = "sq_tb_consumo", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "consumo")
 	@Column(name = "id_consumo")
-	private Integer id;
+	private Long id;
 
 	@Column(name = "nr_litros_consumidos", nullable = false)
 	private Double litrosConsumidos;
@@ -67,11 +67,11 @@ public class Consumo {
 	public Consumo(double d, double e, Estilo lager, Marca amstel, Consumidor consumidor2, Comanda comanda2) {
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

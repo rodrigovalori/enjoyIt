@@ -23,8 +23,8 @@ public class TestePersist {
 		try {
 			em = Persistence.createEntityManagerFactory("enjoyIt").createEntityManager();
 
-			Consumidor consumidor = new Consumidor(1123456789, "Ciclano", "ciclano@gmail.com",
-					new GregorianCalendar(2027, Calendar.DECEMBER, 1), 1234567, "Homem", 19876, "Rua Teste, 10",
+			Consumidor consumidor = new Consumidor(1123456789l, "Ciclano", "ciclano@gmail.com",
+					new GregorianCalendar(2027, Calendar.DECEMBER, 1), 1234567l, "Homem", 19876, "Rua Teste, 10",
 					"Bairro", "Cidade", "Estado");
 			
 			Comanda comanda = new Comanda(Calendar.getInstance(), 257.10, consumidor);
