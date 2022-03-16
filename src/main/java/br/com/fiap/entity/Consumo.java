@@ -27,17 +27,17 @@ public class Consumo {
 
 	@Column(name = "nr_litros_consumidos", nullable = false)
 	private Double litrosConsumidos;
-	
+
 	@Column(name = "nr_preco_por_litro", nullable = false)
 	private Double precoPorLitro;
-	
+
 	@Column(name = "nr_valor_consumo", columnDefinition = "AS (nr_litros_consumidos * nr_preco_por_litro)", insertable = false, updatable = false)
 	private Double valorConsumo;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "ds_estilo", nullable = false)
 	private Estilo estilo;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "ds_marca", nullable = false)
 	private Marca marca;
@@ -54,17 +54,32 @@ public class Consumo {
 		super();
 	}
 
-	public Consumo(Double litrosConsumidos, Estilo estilo, Marca marca, Consumidor consumidor,
-			Comanda comanda) {
+	public Consumo(Double litrosConsumidos, Double precoPorLitro, Double valorConsumo, Estilo estilo, Marca marca,
+			Consumidor consumidor, Comanda comanda) {
 		super();
 		this.litrosConsumidos = litrosConsumidos;
+		this.precoPorLitro = precoPorLitro;
+		this.valorConsumo = valorConsumo;
 		this.estilo = estilo;
 		this.marca = marca;
 		this.consumidor = consumidor;
 		this.comanda = comanda;
 	}
 
-	public Consumo(double d, double e, Estilo lager, Marca amstel, Consumidor consumidor2, Comanda comanda2) {
+	public Double getPrecoPorLitro() {
+		return precoPorLitro;
+	}
+
+	public void setPrecoPorLitro(Double precoPorLitro) {
+		this.precoPorLitro = precoPorLitro;
+	}
+
+	public Double getValorConsumo() {
+		return valorConsumo;
+	}
+
+	public void setValorConsumo(Double valorConsumo) {
+		this.valorConsumo = valorConsumo;
 	}
 
 	public Long getId() {
