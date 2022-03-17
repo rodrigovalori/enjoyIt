@@ -1,10 +1,12 @@
 package br.com.fiap.teste.custom;
 
-import java.util.Calendar;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
+import javax.persistence.Query;
 
 public class TesteUltimaVisita {
 
@@ -15,13 +17,17 @@ public class TesteUltimaVisita {
 		try {
 			em = Persistence.createEntityManagerFactory("enjoyIt").createEntityManager();
 
-			String jpql = "select MAX(c.dataComanda) from Comanda c, Consumidor s where s.numeroTelefone = 1123456789";
+			Query query = em.createNativeQuery(
+					"select MAX(DT_COMANDA)\n" + "from TB_COMANDA\n" + "where NR_TELEFONE = :numeroTelefone");
 
-			TypedQuery<Calendar> typedQuery = em.createQuery(jpql, Calendar.class);
+			query.setParameter("numeroTelefone", "1123456789");
 
-			Calendar comanda = typedQuery.getSingleResult();
+			Timestamp result = (Timestamp) query.getSingleResult();
 
-			System.out.println(comanda.getTime());
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			String obj = sdf.format(new Date(result.getTime()));
+
+			System.out.println(obj);
 
 		} catch (Exception e) {
 			e.printStackTrace();

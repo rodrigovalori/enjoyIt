@@ -1,8 +1,10 @@
 package br.com.fiap.teste.custom;
 
+import java.math.BigDecimal;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
+import javax.persistence.Query;
 
 public class TesteFrequenciaVisitas {
 
@@ -13,13 +15,16 @@ public class TesteFrequenciaVisitas {
 		try {
 			em = Persistence.createEntityManagerFactory("enjoyIt").createEntityManager();
 
-			String jpql = "select COUNT(c.dataComanda) from Comanda c, Consumidor s where c.dataComanda between '01/03/2022 23:51:35,545000000' and '31/03/2022 23:51:35,545000000' and s.numeroTelefone = 1123456789";
+			Query query = em.createNativeQuery("SELECT COUNT(DT_COMANDA)\n" + "FROM TB_COMANDA\n"
+					+ "WHERE DT_COMANDA BETWEEN TO_DATE(:dataInicio, 'DD/MM/YYYY') AND TO_DATE(:dataFim, 'DD/MM/YYYY') and NR_TELEFONE = :numeroTelefone");
 
-			TypedQuery<Long> typedQuery = em.createQuery(jpql, Long.class);
+			query.setParameter("dataInicio", "01/03/2022");
+			query.setParameter("dataFim", "31/03/2022");
+			query.setParameter("numeroTelefone", "1123456789");
 
-			Long comanda = typedQuery.getSingleResult();
+			BigDecimal result = (BigDecimal) query.getSingleResult();
 
-			System.out.println(comanda);
+			System.out.println(result);
 
 		} catch (Exception e) {
 			e.printStackTrace();

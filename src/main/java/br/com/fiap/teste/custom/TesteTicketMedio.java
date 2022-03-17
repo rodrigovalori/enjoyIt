@@ -19,7 +19,10 @@ public class TesteTicketMedio {
 					"SELECT ROUND(SUM(TB_CONSUMO.nr_litros_consumidos * TB_CONSUMO.nr_preco_por_litro)/COUNT(TB_COMANDA.id_comanda), 2)\n"
 							+ "FROM TB_COMANDA\n" + "         JOIN TB_CONSUMO\n"
 							+ "              ON TB_COMANDA.id_comanda = TB_CONSUMO.id_comanda\n"
-							+ "WHERE TB_COMANDA.nr_telefone = 1123456789\n" + "  AND TB_CONSUMO.id_comanda = 1");
+							+ "WHERE TB_COMANDA.nr_telefone = :numeroTelefone\n" + "  AND TB_CONSUMO.id_comanda = :idComanda");
+			
+			query.setParameter("numeroTelefone", "1123456789");
+			query.setParameter("idComanda", "1");
 
 			BigDecimal result = (BigDecimal) query.getSingleResult();
 
