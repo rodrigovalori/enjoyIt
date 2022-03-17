@@ -117,4 +117,11 @@ public class Consumo {
 	public void setComanda(Comanda comanda) {
 		this.comanda = comanda;
 	}
+
+	@Override
+	public String toString() {
+		return "Consumo [id=" + id + ", litrosConsumidos=" + litrosConsumidos + ", precoPorLitro=" + precoPorLitro
+				+ ", estilo=" + estilo + ", marca=" + marca + ", consumidor=" + consumidor + ", comanda=" + comanda
+				+ "]";
+	}
 }
