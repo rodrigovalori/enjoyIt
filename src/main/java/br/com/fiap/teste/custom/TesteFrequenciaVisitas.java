@@ -8,9 +8,9 @@ import javax.persistence.Query;
 
 public class TesteFrequenciaVisitas {
 
-	public static void main(String[] args) {
+	public static BigDecimal main(String dataInicial, String dataFinal) {
 
-		EntityManager em = null;
+		EntityManager em = null;	
 
 		try {
 			em = Persistence.createEntityManagerFactory("enjoyIt").createEntityManager();
@@ -22,9 +22,9 @@ public class TesteFrequenciaVisitas {
 			query.setParameter("dataFim", "31/03/2022");
 			query.setParameter("numeroTelefone", "1123456789");
 
-			BigDecimal result = (BigDecimal) query.getSingleResult();
-
-			System.out.println(result);
+			BigDecimal numeroVisitas = (BigDecimal) query.getSingleResult();
+			
+			return numeroVisitas;
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -39,5 +39,6 @@ public class TesteFrequenciaVisitas {
 
 			}
 		}
+		return null;
 	}
 }

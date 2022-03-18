@@ -49,8 +49,8 @@ public class TesteConsultaDados {
 		System.out.println("\nLista de consumidores disponíveis:\n");
 		
 		for (Object[] obj : listaConsumidores) {
-			BigDecimal nrTelefone = (BigDecimal) obj[0];
-			String nomeConsumidor = (String) obj[1];
+			BigDecimal nrTelefone = (BigDecimal) obj[1];
+			String nomeConsumidor = (String) obj[0];
 			System.out.println(nrTelefone + " - " + nomeConsumidor + "\n");
 		}
 
@@ -59,9 +59,11 @@ public class TesteConsultaDados {
 		Boolean numeroEncontrado = false;
 		
 		String numTelefoneDigitado = null;
+		String dataInicial = null;
+		String dataFinal = null;
 		
 		do {
-			System.out.println("\nDigite um número de telefone dentre as opções da lista:\n");
+			System.out.println("\nDigite um número de telefone dentre as opções da lista:");
 			numTelefoneDigitado = sc.nextLine();
 			for (Object[] obj : listaConsumidores) {
 				BigDecimal nrTelefone = (BigDecimal) obj[0];
@@ -75,7 +77,34 @@ public class TesteConsultaDados {
 			
 		} while (!numeroEncontrado);
 		
-		System.out.println(TesteUltimaVisita.main(numTelefoneDigitado));
+		System.out.println("\nDigite a data inicial (formato: DD/MM/AAAA):");
+		dataInicial = sc.nextLine();
+		
+		System.out.println("\nDigite a data final (formato: DD/MM/AAAA):");
+		dataFinal = sc.nextLine();
+		
+		System.out.println("Data da última visita: " + TesteUltimaVisita.main(numTelefoneDigitado));
+		
+		System.out.println("Número de visitas entre " + dataInicial + " e " + dataFinal + ": " + TesteFrequenciaVisitas.main(dataInicial, dataFinal));
+		
+		System.out.println("Ticket médio: " + TesteTicketMedio.main(numTelefoneDigitado));
+		
+		List<Object[]> bebidaFavorita = new ArrayList<Object[]>();
+		
+		bebidaFavorita = TesteEstiloMarcaFavoritos.main(numTelefoneDigitado);
+		
+//		String estilo = null;
+//		String marca = null;
+		
+		for (Object[] bebida : bebidaFavorita) {
+			String marca = (String) bebida[0];
+			String estilo = (String) bebida[1];
+			System.out.println("Marca favorita: " + marca);
+			System.out.println("Estilo favorito: " + estilo);
+		}
+		
+//		System.out.println("Marca favorita: " + marca);
+//		System.out.println("Estilo favorito: " + estilo);
 		
 		sc.close();
 	}

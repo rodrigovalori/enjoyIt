@@ -8,9 +8,10 @@ import javax.persistence.Query;
 
 public class TesteTicketMedio {
 
-	public static void main(String[] args) {
+	public static BigDecimal main(String numTelefone) {
 
 		EntityManager em = null;
+		
 
 		try {
 			em = Persistence.createEntityManagerFactory("enjoyIt").createEntityManager();
@@ -24,9 +25,9 @@ public class TesteTicketMedio {
 			query.setParameter("numeroTelefone", "1123456789");
 			query.setParameter("idComanda", "1");
 
-			BigDecimal result = (BigDecimal) query.getSingleResult();
+			BigDecimal ticketMedio = (BigDecimal) query.getSingleResult();
 
-			System.out.println(result);
+			return ticketMedio;
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -41,5 +42,6 @@ public class TesteTicketMedio {
 
 			}
 		}
+		return null;
 	}
 }

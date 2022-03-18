@@ -9,16 +9,10 @@ import javax.persistence.Query;
 
 public class TesteEstiloMarcaFavoritos {
 
-	public static void main(String[] args) {
+	public static List<Object[]> main(String numTelefone) {
 
 		EntityManager em = null;
 		
-		Scanner sc = new Scanner(System.in);
-		
-		Long numTelefone = sc.nextLong();
-		
-		sc.close();
-
 		try {
 			em = Persistence.createEntityManagerFactory("enjoyIt").createEntityManager();
 
@@ -29,12 +23,8 @@ public class TesteEstiloMarcaFavoritos {
 			
 			query.setParameter("numeroTelefone", "1123456789");
 			List<Object[]> list = query.getResultList();
-
-			for (Object[] obj : list) {
-			     String age = (String) obj[0];
-			     String name = (String) obj[1];
-			     System.out.println(age + " " + name);
-			}
+			
+			return list;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -49,5 +39,6 @@ public class TesteEstiloMarcaFavoritos {
 
 			}
 		}
+		return null;
 	}
 }
