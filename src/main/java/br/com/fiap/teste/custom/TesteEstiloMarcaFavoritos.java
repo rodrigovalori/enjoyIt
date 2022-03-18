@@ -1,6 +1,7 @@
 package br.com.fiap.teste.custom;
 
 import java.util.List;
+import java.util.Scanner;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -11,6 +12,12 @@ public class TesteEstiloMarcaFavoritos {
 	public static void main(String[] args) {
 
 		EntityManager em = null;
+		
+		Scanner sc = new Scanner(System.in);
+		
+		Long numTelefone = sc.nextLong();
+		
+		sc.close();
 
 		try {
 			em = Persistence.createEntityManagerFactory("enjoyIt").createEntityManager();

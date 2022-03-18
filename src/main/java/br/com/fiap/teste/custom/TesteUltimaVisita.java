@@ -10,9 +10,11 @@ import javax.persistence.Query;
 
 public class TesteUltimaVisita {
 
-	public static void main(String[] args) {
+	public static String main(String numTelefone) {
 
 		EntityManager em = null;
+		
+		String dataUltimaVisita = null;
 
 		try {
 			em = Persistence.createEntityManagerFactory("enjoyIt").createEntityManager();
@@ -20,14 +22,12 @@ public class TesteUltimaVisita {
 			Query query = em.createNativeQuery(
 					"select MAX(DT_COMANDA)\n" + "from TB_COMANDA\n" + "where NR_TELEFONE = :numeroTelefone");
 
-			query.setParameter("numeroTelefone", "1123456789");
+			query.setParameter("numeroTelefone", numTelefone);
 
 			Timestamp result = (Timestamp) query.getSingleResult();
 
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-			String obj = sdf.format(new Date(result.getTime()));
-
-			System.out.println(obj);
+			dataUltimaVisita = sdf.format(new Date(result.getTime()));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -42,5 +42,6 @@ public class TesteUltimaVisita {
 
 			}
 		}
+		return dataUltimaVisita;
 	}
 }
