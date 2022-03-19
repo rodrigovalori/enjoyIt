@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -49,8 +51,8 @@ public class TesteConsultaDados {
 		System.out.println("\nLista de consumidores disponíveis:\n");
 		
 		for (Object[] obj : listaConsumidores) {
-			BigDecimal nrTelefone = (BigDecimal) obj[1];
-			String nomeConsumidor = (String) obj[0];
+			BigDecimal nrTelefone = (BigDecimal) obj[0];
+			String nomeConsumidor = (String) obj[1];
 			System.out.println(nrTelefone + " - " + nomeConsumidor + "\n");
 		}
 
@@ -62,49 +64,61 @@ public class TesteConsultaDados {
 		String dataInicial = null;
 		String dataFinal = null;
 		
-		do {
-			System.out.println("\nDigite um número de telefone dentre as opções da lista:");
-			numTelefoneDigitado = sc.nextLine();
+		System.out.print("Digite um número de telefone dentre as opções da lista: ");
+		numTelefoneDigitado = sc.nextLine();
+		
+		while (!numeroEncontrado) {
 			for (Object[] obj : listaConsumidores) {
+				System.out.print("Telefone não cadastrado na base de dados. Digite novamente: ");
+				numTelefoneDigitado = sc.nextLine();
 				BigDecimal nrTelefone = (BigDecimal) obj[0];
 				if (numTelefoneDigitado.equals(nrTelefone.toString())) {
-					System.out.println("Telefone válido");
 					numeroEncontrado = true;
-				} else {
-					System.out.println("Telefone inválido");	
 				}
 			}
-			
-		} while (!numeroEncontrado);
+		}
 		
-		System.out.println("\nDigite a data inicial (formato: DD/MM/AAAA):");
+		String regex = "^[0-3]?[0-9]/[0-3]?[0-9]/(?:[0-9]{2})?[0-9]{2}$";
+		Pattern pattern = Pattern.compile(regex);	
+		
+		System.out.print("\nDigite a data inicial (formato: DD/MM/AAAA): ");
 		dataInicial = sc.nextLine();
 		
-		System.out.println("\nDigite a data final (formato: DD/MM/AAAA):");
+		Boolean dataInicialValida = pattern.matcher(dataInicial).matches();
+		
+		while (!dataInicialValida) {
+			System.out.print("Data inicial inválida. Digite-a novamente no formato: DD/MM/AAAA: ");	
+			dataInicial = sc.nextLine();
+			dataInicialValida = pattern.matcher(dataInicial).matches();
+		}
+		
+		System.out.print("\nDigite a data final (formato: DD/MM/AAAA): ");
 		dataFinal = sc.nextLine();
+		
+		Boolean dataFinalValida = pattern.matcher(dataFinal).matches();
+				
+		while (!dataFinalValida) {
+			System.out.print("Data final inválida. Digite-a novamente no formato: DD/MM/AAAA: ");	
+			dataFinal = sc.nextLine();
+			dataFinalValida = pattern.matcher(dataFinal).matches();
+		}
 		
 		System.out.println("Data da última visita: " + TesteUltimaVisita.main(numTelefoneDigitado));
 		
 		System.out.println("Número de visitas entre " + dataInicial + " e " + dataFinal + ": " + TesteFrequenciaVisitas.main(dataInicial, dataFinal));
 		
-		System.out.println("Ticket médio: " + TesteTicketMedio.main(numTelefoneDigitado));
+		System.out.println("Ticket médio: R$" + TesteTicketMedio.main(numTelefoneDigitado));
 		
 		List<Object[]> bebidaFavorita = new ArrayList<Object[]>();
 		
 		bebidaFavorita = TesteEstiloMarcaFavoritos.main(numTelefoneDigitado);
 		
-//		String estilo = null;
-//		String marca = null;
-		
 		for (Object[] bebida : bebidaFavorita) {
-			String marca = (String) bebida[0];
-			String estilo = (String) bebida[1];
+			String marca = (String) bebida[1];
+			String estilo = (String) bebida[0];
 			System.out.println("Marca favorita: " + marca);
 			System.out.println("Estilo favorito: " + estilo);
 		}
-		
-//		System.out.println("Marca favorita: " + marca);
-//		System.out.println("Estilo favorito: " + estilo);
 		
 		sc.close();
 	}
