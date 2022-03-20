@@ -44,34 +44,40 @@ public class TesteConsultaDados {
 			numeroTelefone = sc.nextLine();
 		}
 
-		System.out.println("------------------------------------------------------------------------------------------------------------------------------------------\n"
-				+"Questao 1: Qual a data da ultima visita ao estabelecimento?\n"
-				+ "A data da ultima visita foi em " + ConsumidorService.verificarUltimaVisita(numeroTelefone));
-		System.out.println("------------------------------------------------------------------------------------------------------------------------------------------");
+		System.out.println(
+				"------------------------------------------------------------------------------------------------------------------------------------------\n"
+						+ "Questao 1: Qual a data da ultima visita ao estabelecimento?\n"
+						+ "A data da ultima visita foi em " + ConsumidorService.verificarUltimaVisita(numeroTelefone));
+		System.out.println(
+				"------------------------------------------------------------------------------------------------------------------------------------------");
 
-		System.out.println("------------------------------------------------------------------------------------------------------------------------------------------\n"
-				+"Questao 2: Qual e o ticket medio (valor medio gasto no estabelecimento)?\n"
-				+ "O Ticket medio foi de R$" + ConsumidorService.verificarTicketMedio(numeroTelefone));
-		System.out.println("------------------------------------------------------------------------------------------------------------------------------------------");
+		System.out.println(
+				"------------------------------------------------------------------------------------------------------------------------------------------\n"
+						+ "Questao 2: Qual e o ticket medio (valor medio gasto no estabelecimento)?\n"
+						+ "O Ticket medio foi de R$" + ConsumidorService.verificarTicketMedio(numeroTelefone));
+		System.out.println(
+				"------------------------------------------------------------------------------------------------------------------------------------------");
 
 		List<Object[]> bebidaFavorita = new ArrayList<Object[]>();
 
 		bebidaFavorita = ConsumidorService.verificarEstiloMarcaFavoritos(numeroTelefone);
 
-		System.out.println("------------------------------------------------------------------------------------------------------------------------------------------\n"
-				+ "Questao 3: Qual e a bebida e o estilo (cervejas IPA, Pilsen etc.) favoritos com base no consumo?");
+		System.out.println(
+				"------------------------------------------------------------------------------------------------------------------------------------------\n"
+						+ "Questao 3: Qual e a bebida e o estilo (cervejas IPA, Pilsen etc.) favoritos com base no consumo?");
 		for (Object[] bebida : bebidaFavorita) {
 			String marca = (String) bebida[1];
 			String estilo = (String) bebida[0];
 			System.out.println("Marca favorita: " + marca);
 			System.out.println("Estilo favorito: " + estilo);
 		}
-		System.out.println("------------------------------------------------------------------------------------------------------------------------------------------\n");
+		System.out.println(
+				"------------------------------------------------------------------------------------------------------------------------------------------\n");
 
-		System.out.println("------------------------------------------------------------------------------------------------------------------------------------------");
+		System.out.println(
+				"------------------------------------------------------------------------------------------------------------------------------------------");
 		System.out.print("Questao 4: Informe abaixo o intervalo de datas para consultar a frequencia de visitas:");
-		
-		//String regex = "^[0-3]?[0-9]/[0-1]?[0-9]/(?:[0-9]{2})?[0-9]{2}$";
+
 		String regex = "^(((0[1-9]|[12][0-9]|30)[-/]?(0[13-9]|1[012])|31[-/]?(0[13578]|1[02])|(0[1-9]|1[0-9]|2[0-8])[-/]?02)[-/]?[0-9]{4}|29[-/]?02[-/]?([0-9]{2}(([2468][048]|[02468][48])|[13579][26])|([13579][26]|[02468][048]|0[0-9]|1[0-6])00))$";
 		Pattern pattern = Pattern.compile(regex);
 
@@ -96,10 +102,11 @@ public class TesteConsultaDados {
 			dataFim = sc.nextLine();
 			dataFinalValida = pattern.matcher(dataFim).matches();
 		}
-		
+
 		System.out.println("\nA frequencia de visitas entre " + dataInicio + " e " + dataFim + " foi de "
 				+ ConsumidorService.verificarFrequenciaVisita(dataInicio, dataFim, numeroTelefone));
-		System.out.println("------------------------------------------------------------------------------------------------------------------------------------------");
+		System.out.println(
+				"------------------------------------------------------------------------------------------------------------------------------------------");
 
 		sc.close();
 	}
