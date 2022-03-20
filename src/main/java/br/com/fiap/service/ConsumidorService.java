@@ -83,7 +83,7 @@ public class ConsumidorService {
 			em = Persistence.createEntityManagerFactory("enjoyIt").createEntityManager();
 
 			Query query = em.createNativeQuery("SELECT COUNT(DT_COMANDA)\n" + "FROM TB_COMANDA\n"
-					+ "WHERE DT_COMANDA BETWEEN TO_DATE(:dataInicio, 'DD/MM/YYYY') AND TO_DATE(:dataFim, 'DD/MM/YYYY') and NR_TELEFONE = :numeroTelefone");
+					+ "WHERE DT_COMANDA BETWEEN TO_DATE(:dataInicio, 'DD/MM/YYYY') AND TO_DATE(:dataFim, 'DD/MM/YYYY') AND NR_TELEFONE = :numeroTelefone");
 
 			query.setParameter("dataInicio", dataInicio);
 			query.setParameter("dataFim", dataFim);
@@ -109,24 +109,39 @@ public class ConsumidorService {
 		return null;
 	}
 
-	public static BigDecimal verificarTicketMedio(String numeroTelefone) {
+	public static Double verificarTicketMedio(String numeroTelefone) {
 
 		EntityManager em = null;
 
 		try {
 			em = Persistence.createEntityManagerFactory("enjoyIt").createEntityManager();
 
-			Query query = em.createNativeQuery(
-					"SELECT ROUND(SUM(TB_CONSUMO.nr_litros_consumidos * TB_CONSUMO.nr_preco_por_litro)/COUNT(TB_COMANDA.id_comanda), 2)\n"
-							+ "FROM TB_COMANDA\n" + "         JOIN TB_CONSUMO\n"
-							+ "              ON TB_COMANDA.id_comanda = TB_CONSUMO.id_comanda\n"
-							+ "WHERE TB_COMANDA.nr_telefone = :numeroTelefone\n"
-							+ "  AND TB_CONSUMO.id_comanda = :idComanda");
+			/*
+			 * Query query = em.createNativeQuery(
+			 * "SELECT ROUND(SUM(TB_CONSUMO.nr_litros_consumidos * TB_CONSUMO.nr_preco_por_litro)/COUNT(TB_COMANDA.id_comanda), 2)\n"
+			 * + "FROM TB_COMANDA\n" + "         JOIN TB_CONSUMO\n" +
+			 * "              ON TB_COMANDA.id_comanda = TB_CONSUMO.id_comanda\n" +
+			 * "WHERE TB_COMANDA.nr_telefone = :numeroTelefone\n" +
+			 * "  AND TB_CONSUMO.id_comanda = :idComanda");
+			 */
 
-			query.setParameter("numeroTelefone", numeroTelefone);
-			query.setParameter("idComanda", "1");
+			Query querySum = em.createNativeQuery(
+					"SELECT SUM(TB_CONSUMO.NR_LITROS_CONSUMIDOS * TB_CONSUMO.NR_PRECO_POR_LITRO)"
+					+ " from TB_CONSUMO where NR_TELEFONE = :numeroTelefone");
+			
+			Query queryCount = em.createNativeQuery(
+					"select count(NR_TELEFONE) from TB_COMANDA where NR_TELEFONE = :numeroTelefone");
 
-			BigDecimal ticketMedio = (BigDecimal) query.getSingleResult();
+			querySum.setParameter("numeroTelefone", numeroTelefone);
+			queryCount.setParameter("numeroTelefone", numeroTelefone);
+			//query.setParameter("idComanda", "1");
+			
+
+			BigDecimal sum = (BigDecimal) querySum.getSingleResult();
+					
+			BigDecimal count =(BigDecimal) queryCount.getSingleResult();
+			
+			Double ticketMedio =  sum.doubleValue() / count.doubleValue();
 
 			return ticketMedio;
 
