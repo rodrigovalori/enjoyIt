@@ -1,4 +1,4 @@
-package br.com.fiap.teste;
+package br.com.fiap.teste.crud;
 
 import java.util.ArrayList;
 import java.util.Calendar;
