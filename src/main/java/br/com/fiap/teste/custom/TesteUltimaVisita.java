@@ -13,7 +13,7 @@ public class TesteUltimaVisita {
 	public static String main(String numTelefone) {
 
 		EntityManager em = null;
-		
+
 		String dataUltimaVisita = null;
 
 		try {

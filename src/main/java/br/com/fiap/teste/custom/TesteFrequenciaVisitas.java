@@ -10,7 +10,7 @@ public class TesteFrequenciaVisitas {
 
 	public static BigDecimal main(String dataInicial, String dataFinal) {
 
-		EntityManager em = null;	
+		EntityManager em = null;
 
 		try {
 			em = Persistence.createEntityManagerFactory("enjoyIt").createEntityManager();
@@ -23,7 +23,7 @@ public class TesteFrequenciaVisitas {
 			query.setParameter("numeroTelefone", "1123456789");
 
 			BigDecimal numeroVisitas = (BigDecimal) query.getSingleResult();
-			
+
 			return numeroVisitas;
 
 		} catch (Exception e) {

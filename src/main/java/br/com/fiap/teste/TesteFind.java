@@ -15,8 +15,9 @@ public class TesteFind {
 			em = Persistence.createEntityManagerFactory("enjoyIt").createEntityManager();
 
 			Consumidor consumidor = em.find(Consumidor.class, 1123456789l);
-						
-			System.out.println("O consumidor " + consumidor.getNomeConsumidor() + " possui um telefone de número: " + consumidor.getNumeroTelefone());
+
+			System.out.println("O consumidor " + consumidor.getNomeConsumidor() + " possui um telefone de número: "
+					+ consumidor.getNumeroTelefone());
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -28,7 +29,7 @@ public class TesteFind {
 		} finally {
 			if (em != null) {
 				em.close();
-				
+
 			}
 		}
 	}

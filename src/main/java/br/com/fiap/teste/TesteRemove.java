@@ -15,7 +15,7 @@ public class TesteRemove {
 			em = Persistence.createEntityManagerFactory("enjoyIt").createEntityManager();
 
 			Consumidor consumidor = em.find(Consumidor.class, 1123456789l);
-			
+
 			em.getTransaction().begin();
 
 			em.remove(consumidor);
@@ -32,7 +32,7 @@ public class TesteRemove {
 		} finally {
 			if (em != null) {
 				em.close();
-				
+
 			}
 		}
 	}

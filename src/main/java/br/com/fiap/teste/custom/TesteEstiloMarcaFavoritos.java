@@ -1,7 +1,6 @@
 package br.com.fiap.teste.custom;
 
 import java.util.List;
-import java.util.Scanner;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -12,7 +11,7 @@ public class TesteEstiloMarcaFavoritos {
 	public static List<Object[]> main(String numTelefone) {
 
 		EntityManager em = null;
-		
+
 		try {
 			em = Persistence.createEntityManagerFactory("enjoyIt").createEntityManager();
 
@@ -20,12 +19,12 @@ public class TesteEstiloMarcaFavoritos {
 					+ "where nr_litros_consumidos * nr_preco_por_litro = (select MAX(nr_litros_consumidos * nr_preco_por_litro)\n"
 					+ "                                                   from TB_CONSUMO\n"
 					+ "                                                   where NR_TELEFONE = :numeroTelefone)");
-			
+
 			query.setParameter("numeroTelefone", "1123456789");
 			List<Object[]> list = query.getResultList();
-			
+
 			return list;
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 

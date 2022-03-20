@@ -30,7 +30,7 @@ public class Comanda {
 
 	@Column(name = "nr_valor_total_gasto")
 	private Double valorTotalGasto;
-	
+
 	@JoinColumn(name = "nr_telefone")
 	@ManyToOne
 	private Consumidor consumidor;

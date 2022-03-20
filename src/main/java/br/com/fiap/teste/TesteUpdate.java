@@ -15,7 +15,7 @@ public class TesteUpdate {
 			em = Persistence.createEntityManagerFactory("enjoyIt").createEntityManager();
 
 			Consumidor consumidor = em.find(Consumidor.class, 1123456789l);
-			
+
 			em.getTransaction().begin();
 
 			consumidor.setEmail("fulano2@gmail.com");
@@ -32,7 +32,7 @@ public class TesteUpdate {
 		} finally {
 			if (em != null) {
 				em.close();
-				
+
 			}
 		}
 	}
