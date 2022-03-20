@@ -15,7 +15,7 @@ public class TesteConsultaDados {
 		List<Object[]> listaConsumidores = new ArrayList<Object[]>();
 		listaConsumidores = ConsumidorService.findAll();
 
-		System.out.println("\nLista de consumidores disponíveis:\n");
+		System.out.println("\nLista de consumidores disponiveis:\n");
 
 		for (Object[] obj : listaConsumidores) {
 			BigDecimal nrTelefone = (BigDecimal) obj[0];
@@ -27,7 +27,7 @@ public class TesteConsultaDados {
 
 		Boolean numeroEncontrado = false;
 
-		System.out.print("Digite um número de telefone dentre as opções da lista: ");
+		System.out.print("Digite um numero de telefone dentre as opcoes da lista: ");
 		String numeroTelefone = sc.nextLine();
 
 		while (!numeroEncontrado) {
@@ -40,7 +40,7 @@ public class TesteConsultaDados {
 			}
 			if (numeroEncontrado)
 				break;
-			System.out.print("Telefone não cadastrado na base de dados. Digite novamente: ");
+			System.out.print("Telefone nao cadastrado na base de dados. Digite novamente: ");
 			numeroTelefone = sc.nextLine();
 		}
 
@@ -53,7 +53,7 @@ public class TesteConsultaDados {
 		Boolean dataInicialValida = pattern.matcher(dataInicio).matches();
 
 		while (!dataInicialValida) {
-			System.out.print("Data inicial inválida. Digite-a novamente no formato: DD/MM/AAAA: ");
+			System.out.print("Data inicial invalida. Digite-a novamente no formato: DD/MM/AAAA: ");
 			dataInicio = sc.nextLine();
 			dataInicialValida = pattern.matcher(dataInicio).matches();
 		}
@@ -64,26 +64,26 @@ public class TesteConsultaDados {
 		Boolean dataFinalValida = pattern.matcher(dataFim).matches();
 
 		while (!dataFinalValida) {
-			System.out.print("Data final inválida. Digite-a novamente no formato: DD/MM/AAAA: ");
+			System.out.print("Data final invalida. Digite-a novamente no formato: DD/MM/AAAA: ");
 			dataFim = sc.nextLine();
 			dataFinalValida = pattern.matcher(dataFim).matches();
 		}
 
-		System.out.println("Questão 1: Qual a data da última visita ao estabelecimento?\n"
-				+ "A data da última visita foi em " + ConsumidorService.verificarUltimaVisita(numeroTelefone));
+		System.out.println("Questao 1: Qual a data da ultima visita ao estabelecimento?\n"
+				+ "A data da ultima visita foi em " + ConsumidorService.verificarUltimaVisita(numeroTelefone));
 
-		System.out.println("Questão 2: Qual é a frequência de visitas?\n"
-				+ "A frequência de visitas entre " + dataInicio + " e " + dataFim + "foi de "
+		System.out.println("Questao 2: Qual e a frequencia de visitas?\n"
+				+ "A frequencia de visitas entre " + dataInicio + " e " + dataFim + "foi de "
 				+ ConsumidorService.verificarFrequenciaVisita(dataInicio, dataFim, numeroTelefone));
 
-		System.out.println("Questão 3: Qual é o ticket médio (valor médio gasto no estabelecimento)?\n"
-				+ "O Ticket médio foi de R$" + ConsumidorService.verificarTicketMedio(numeroTelefone));
+		System.out.println("Questao 3: Qual e o ticket medio (valor medio gasto no estabelecimento)?\n"
+				+ "O Ticket medio foi de R$" + ConsumidorService.verificarTicketMedio(numeroTelefone));
 
 		List<Object[]> bebidaFavorita = new ArrayList<Object[]>();
 
 		bebidaFavorita = ConsumidorService.verificarEstiloMarcaFavoritos(numeroTelefone);
 
-		System.out.println("Questão 4: Qual é a bebida e o estilo (cervejas IPA, Pilsen etc.) favoritos com base no consumo?");
+		System.out.println("Questao 4: Qual e a bebida e o estilo (cervejas IPA, Pilsen etc.) favoritos com base no consumo?");
 		for (Object[] bebida : bebidaFavorita) {
 			String marca = (String) bebida[1];
 			String estilo = (String) bebida[0];
