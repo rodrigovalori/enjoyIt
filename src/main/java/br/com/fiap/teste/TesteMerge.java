@@ -14,9 +14,9 @@ public class TesteMerge {
 		try {
 			em = Persistence.createEntityManagerFactory("enjoyIt").createEntityManager();
 
-			Consumidor consumidor = em.find(Consumidor.class, 1123456789l);
+			Consumidor consumidor = em.find(Consumidor.class, 71985769826l);
 
-			consumidor.setNomeConsumidor("Fulano");
+			consumidor.setNumeroTelefone(18922108418l);
 
 			em.getTransaction().begin();
 

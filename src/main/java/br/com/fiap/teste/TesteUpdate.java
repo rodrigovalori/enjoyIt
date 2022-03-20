@@ -14,14 +14,14 @@ public class TesteUpdate {
 		try {
 			em = Persistence.createEntityManagerFactory("enjoyIt").createEntityManager();
 
-			Consumidor consumidor = em.find(Consumidor.class, 1123456789l);
+			Consumidor consumidor = em.find(Consumidor.class, 93995264333l);
 
 			em.getTransaction().begin();
 
-			consumidor.setEmail("fulano2@gmail.com");
+			consumidor.setEmail("jessica_larissa@yahoo.com.br");
 
 			em.getTransaction().commit();
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 

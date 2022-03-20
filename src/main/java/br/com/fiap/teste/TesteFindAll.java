@@ -10,21 +10,22 @@ import javax.persistence.Query;
 public class TesteFindAll {
 
 	public static void main(String[] args) {
+
 		EntityManager em = null;
 
 		try {
 			em = Persistence.createEntityManagerFactory("enjoyIt").createEntityManager();
 
-			EntityManager session = null;
-
 			Query query = em.createNativeQuery("SELECT nr_telefone, nm_consumidor FROM tb_consumidor");
 
 			List<Object[]> list = query.getResultList();
+			
+			System.out.println("Lista de usuários: ");
 
 			for (Object[] obj : list) {
 				BigDecimal nrTelefone = (BigDecimal) obj[0];
 				String nomeConsumidor = (String) obj[1];
-				System.out.println(nrTelefone + " " + nomeConsumidor);
+				System.out.println("Celular: " + nrTelefone + " | " + "Nome: " + nomeConsumidor);
 			}
 
 		} catch (Exception e) {

@@ -14,14 +14,14 @@ public class TesteRemove {
 		try {
 			em = Persistence.createEntityManagerFactory("enjoyIt").createEntityManager();
 
-			Consumidor consumidor = em.find(Consumidor.class, 1123456789l);
+			Consumidor consumidor = em.find(Consumidor.class, 71985769826l);
 
 			em.getTransaction().begin();
 
 			em.remove(consumidor);
 
 			em.getTransaction().commit();
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 
