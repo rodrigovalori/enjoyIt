@@ -116,32 +116,21 @@ public class ConsumidorService {
 		try {
 			em = Persistence.createEntityManagerFactory("enjoyIt").createEntityManager();
 
-			/*
-			 * Query query = em.createNativeQuery(
-			 * "SELECT ROUND(SUM(TB_CONSUMO.nr_litros_consumidos * TB_CONSUMO.nr_preco_por_litro)/COUNT(TB_COMANDA.id_comanda), 2)\n"
-			 * + "FROM TB_COMANDA\n" + "         JOIN TB_CONSUMO\n" +
-			 * "              ON TB_COMANDA.id_comanda = TB_CONSUMO.id_comanda\n" +
-			 * "WHERE TB_COMANDA.nr_telefone = :numeroTelefone\n" +
-			 * "  AND TB_CONSUMO.id_comanda = :idComanda");
-			 */
+			Query querySum = em
+					.createNativeQuery("SELECT SUM(TB_CONSUMO.NR_LITROS_CONSUMIDOS * TB_CONSUMO.NR_PRECO_POR_LITRO)"
+							+ " from TB_CONSUMO where NR_TELEFONE = :numeroTelefone");
 
-			Query querySum = em.createNativeQuery(
-					"SELECT SUM(TB_CONSUMO.NR_LITROS_CONSUMIDOS * TB_CONSUMO.NR_PRECO_POR_LITRO)"
-					+ " from TB_CONSUMO where NR_TELEFONE = :numeroTelefone");
-			
-			Query queryCount = em.createNativeQuery(
-					"select count(NR_TELEFONE) from TB_COMANDA where NR_TELEFONE = :numeroTelefone");
+			Query queryCount = em
+					.createNativeQuery("select count(NR_TELEFONE) from TB_COMANDA where NR_TELEFONE = :numeroTelefone");
 
 			querySum.setParameter("numeroTelefone", numeroTelefone);
 			queryCount.setParameter("numeroTelefone", numeroTelefone);
-			//query.setParameter("idComanda", "1");
-			
 
 			BigDecimal sum = (BigDecimal) querySum.getSingleResult();
-					
-			BigDecimal count =(BigDecimal) queryCount.getSingleResult();
-			
-			Double ticketMedio =  sum.doubleValue() / count.doubleValue();
+
+			BigDecimal count = (BigDecimal) queryCount.getSingleResult();
+
+			Double ticketMedio = sum.doubleValue() / count.doubleValue();
 
 			return ticketMedio;
 
