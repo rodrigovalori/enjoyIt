@@ -83,7 +83,7 @@ public class ConsumidorService {
 			em = Persistence.createEntityManagerFactory("enjoyIt").createEntityManager();
 
 			Query query = em.createNativeQuery("SELECT COUNT(DT_COMANDA)\n" + "FROM TB_COMANDA\n"
-					+ "WHERE DT_COMANDA BETWEEN TO_DATE(:dataInicio, 'DD/MM/YYYY') AND TO_DATE(:dataFim, 'DD/MM/YYYY') AND NR_TELEFONE = :numeroTelefone");
+					+ "WHERE DT_COMANDA BETWEEN TO_DATE(:dataInicio, 'DD/MM/YYYY') AND TO_DATE(:dataFim, 'DD/MM/YYYY') + 1 AND NR_TELEFONE = :numeroTelefone");
 
 			query.setParameter("dataInicio", dataInicio);
 			query.setParameter("dataFim", dataFim);
@@ -125,7 +125,7 @@ public class ConsumidorService {
 
 			querySum.setParameter("numeroTelefone", numeroTelefone);
 			queryCount.setParameter("numeroTelefone", numeroTelefone);
-
+			
 			BigDecimal sum = (BigDecimal) querySum.getSingleResult();
 
 			BigDecimal count = (BigDecimal) queryCount.getSingleResult();
